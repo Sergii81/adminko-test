@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Interfaces\Repositories\CompanyRepositoryInterface;
+use App\Repositories\CompanyRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->registerRepositories();
     }
 
     /**
@@ -20,5 +22,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+    }
+
+    /**
+     * @return void
+     */
+    public function registerRepositories(): void
+    {
+        $this->app->bind(CompanyRepositoryInterface::class, CompanyRepository::class);
     }
 }
