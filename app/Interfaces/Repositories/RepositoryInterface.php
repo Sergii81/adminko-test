@@ -9,10 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 interface RepositoryInterface
 {
     public function getModel(): Model;
-
     public function getQuery(): Builder;
-
     public function getAll(?array $select = ['*'], ?array $with = []): Collection;
-
     public function create(array $data): Model;
+    public function updateOrCreate(array $conditions, array $data): ?Model;
+    public function getById(int $id): ?Model;
 }

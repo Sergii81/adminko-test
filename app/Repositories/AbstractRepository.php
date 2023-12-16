@@ -39,4 +39,23 @@ abstract class AbstractRepository implements RepositoryInterface
     {
         return $this->getQuery()->create($data);
     }
+
+    /**
+     * @param array $conditions
+     * @param array $data
+     * @return Model|null
+     */
+    public function updateOrCreate(array $conditions, array $data = []): ?Model
+    {
+        return $this->getQuery()->updateOrCreate($conditions, $data);
+    }
+
+    /**
+     * @param int $id
+     * @return Model|null
+     */
+    public function getById(int $id): ?Model
+    {
+        return $this->getQuery()->where('id', $id)->firstOrFail();
+    }
 }
